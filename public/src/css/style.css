@@ -1,0 +1,138 @@
+@font-face{
+    font-family: 'Overpass Mono';
+    src: url('/assets/OverpassMono/OverpassMono-Regular.ttf');
+}
+
+section.main{
+    min-height: 100vh;
+    padding: 15vh 0;
+}
+
+.col.features, .col.explorer{
+    max-height: 200px;
+    overflow: auto;
+}
+
+label.feature{
+    width: 100%;
+    text-align: left;
+}
+
+label.feature.focus{
+    box-shadow: none;
+}
+
+input.feature{
+    pointer-events: none;
+}
+
+.row.create{
+    justify-content: center;
+    margin-top: 30px
+}
+
+.explorer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Overpass Mono';
+    font-size: 14px !important;
+}
+
+.explorer .btn{
+    width: 100%;
+    padding: 4px 16px;
+    text-align: left;
+    justify-content: flex-start;
+    background-color: white;
+    border: none;
+}
+.explorer .btn:hover{
+    background-color: rgb(231, 235, 240);
+}
+
+.explorer .folder::before{
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background-image: url("/assets/bootstrap-icons/folder.svg");
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    transform: translate(0, -50%);
+}
+.explorer .folder.active::before{
+    background-image: url("/assets/bootstrap-icons/folder-fill.svg");
+}
+
+.explorer .file::before{
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background-image: url("/assets/bootstrap-icons/file-code.svg");
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    transform: translate(0, -50%);
+}
+.explorer .file.active::before{
+    background-image: url("/assets/bootstrap-icons/file-earmark-code.svg");
+}
+
+.explorer .row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.explorer .row > .row{
+    display: none;
+    padding-left: 20px;
+}
+
+.explorer .row.expand > .row{
+    display: flex;
+}
+
+.modal{
+    font-family: 'Overpass Mono';
+    font-size: 14px !important;
+}
+
+.modal pre{
+    tab-size: 4;
+}
+
+.modal button.close{
+    padding: 4px 8px 0 8px
+}
+
+.modal .row.content{
+    background-color: rgb(247, 247, 247);
+}
+
+.alert-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.alert{
+    position: relative;
+    width: 350px;
+    pointer-events: auto;
+    z-index: 3
+}
+
+.alert .close{
+    padding-top: 9px;
+    outline: none
+}
