@@ -116,7 +116,7 @@ function getFeatures(){
 }
 
 function generateFiles(projectName){
-    showMsg('Generating files for project<i>' + projectName + '</i>.', 'info');
+    showMsg('Generating files for project <i>' + projectName + '</i>.', 'info');
    
     const features = getFeatures();
     const rawSiteUrl = features.includes('grunt') ? '/public/src/' : '/public/';
