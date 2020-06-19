@@ -128,13 +128,13 @@ function generateFiles(projectName){
 
     projectFiles[rawSiteUrl + 'index.html'].updateContent(
         /<title>Title/g,
-        '<title>' + (projectName.trim() != '' ? projectName.replace(/ /g, '-').toLowerCase() : "Title")
+        '<title>' + (projectName.trim() != '' ? projectName : "Title")
     );
 
     if(features.includes('404-page')){
         projectFiles['/public/404.html'].updateContent(
             /<title>Title/g,
-            '<title>' + (projectName.trim() != '' ? projectName.replace(/ /g, '-').toLowerCase() : "Title")
+            '<title>' + (projectName.trim() != '' ? projectName : "Title")
         );
     }
 
