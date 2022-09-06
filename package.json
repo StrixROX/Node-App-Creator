@@ -14,7 +14,7 @@
         "body-parser": "^1.19.0",
         "compressing": "^1.5.1",
         "express": "^4.17.1",
-        "grunt": "^1.1.0",
+        "grunt": "^1.5.3",
         "grunt-autoprefixer": "^3.0.4",
         "grunt-contrib-cssmin": "^3.0.0",
         "grunt-contrib-htmlmin": "^3.1.0",
