@@ -148,7 +148,6 @@ function generateFiles(projectName){
 
     folders = folders.sort((a, b) => (a.path + a.name) < (b.path + b.name) ? -1 : 1);
     files = files.sort((a, b) => (a.path + a.name) < (b.path + b.name) ? -1 : 1);
-    console.log(files)
 
     return new Promise(async (resolve, reject) => {
         await fetch('/generate', {
