@@ -6,13 +6,10 @@ const compress = require('compressing');
 let busy = false;
 
 function emptyDir(dirpath){
-    console.log(`Removing directory: ${path.join(__dirname, dirpath)}`);
     if(fs.existsSync(dirpath)){
         fs.rmSync(path.join(__dirname, dirpath), {
             recursive: true
         });
-    } else {
-        console.log("Directory not found.")
     }
 }
 
