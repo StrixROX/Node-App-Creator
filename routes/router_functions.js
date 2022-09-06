@@ -5,8 +5,8 @@ const compress = require('compressing');
 
 let busy = false;
 
-function emptyDir(dirpath){
-    if(fs.existsSync(dirpath)){
+function removeDir(dirpath){
+    if(fs.existsSync(path.join(__dirname, dirpath))){
         fs.rmSync(path.join(__dirname, dirpath), {
             recursive: true
         });
@@ -16,7 +16,8 @@ function emptyDir(dirpath){
 function generate(req, res){
     if(!busy){
         busy = true;
-        emptyDir('../gen/app');
+
+        removeDir('../gen');
 
         const allReqs = req.body;
 
@@ -45,10 +46,12 @@ function generate(req, res){
 function download(req, res){
     if(busy){
         if(fs.existsSync(path.join(__dirname, '../gen/app.zip'))) fs.rmSync(path.join(__dirname, '../gen/app.zip'));
-
         compress.zip.compressDir(path.join(__dirname, '../gen/app'), path.join(__dirname, '../gen/app.zip'))
         .then(() => {
             res.download(path.join(__dirname, '../gen/app.zip'), 'app.zip');
+
+            removeDir('../gen/app')
+
             busy = false;
         })
     }
