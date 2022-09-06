@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 			build: {
 				files: [{
 					expand: true,
-					cwd: 'public/dist/',
+					cwd: 'public/src/',
 					src: '**/*.css',
 					dest: 'public/dist/'
 				}]
