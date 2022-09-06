@@ -1,21 +1,16 @@
 const fs = require('fs');
 const path = require('path');
+console.log(path.join());
 const compress = require('compressing');
 
 let busy = false;
 
 function emptyDir(dirpath){
+    console.log(`Removing directory: ${path.join(__dirname, dirpath)}`);
     if(fs.existsSync(dirpath)){
-        const files = fs.readdirSync(dirpath);
-        
-        for(let file of files){
-            if(fs.statSync(dirpath + "/" + file).isDirectory()){
-                emptyDir(dirpath + "/" + file);
-                fs.rmdirSync(dirpath + "/" + file);
-            }else{
-                fs.unlinkSync(dirpath + "/" + file);
-            }
-        }
+        fs.rmSync(path.join(__dirname, dirpath), {
+            recursive: true
+        });
     } else {
         console.log("Directory not found.")
     }
@@ -24,23 +19,22 @@ function emptyDir(dirpath){
 function generate(req, res){
     if(!busy){
         busy = true;
-        emptyDir('./gen/app');
-        if(fs.existsSync('./gen/app.zip')) fs.unlinkSync('./gen/app.zip')
+        emptyDir('../gen/app');
 
         const allReqs = req.body;
 
-        for(let i in allReqs){
-            const type = allReqs[i].type;
-            const path = './gen/app' + allReqs[i].path;
-            const name = allReqs[i].name;
-            const content = allReqs[i].content || null;
+        for(let reqi of allReqs){
+            const type = reqi.type;
+            const filepath = '../gen/app' + reqi.path;
+            const name = reqi.name;
+            const content = reqi.content || null;
             
             if(type == 'folder'){
-                if(!fs.existsSync(path + name)){
-                    fs.mkdirSync(path + name)
+                if(!fs.existsSync(path.join(__dirname, filepath + name))){
+                    fs.mkdirSync(path.join(__dirname, filepath + name), {recursive: true})
                 }
             }else if(type == 'file'){
-                fs.writeFileSync(path + name, content);
+                fs.writeFileSync(path.join(__dirname, filepath + name), content);
             }
         }
 
@@ -53,11 +47,11 @@ function generate(req, res){
 
 function download(req, res){
     if(busy){
-        if(fs.existsSync('./gen/app.zip')) fs.unlinkSync('./gen/app.zip');
+        if(fs.existsSync(path.join(__dirname, '../gen/app.zip'))) fs.rmSync(path.join(__dirname, '../gen/app.zip'));
 
-        compress.zip.compressDir('./gen/app', './gen/app.zip')
+        compress.zip.compressDir(path.join(__dirname, '../gen/app'), path.join(__dirname, '../gen/app.zip'))
         .then(() => {
-            res.download(path.resolve('./gen/app.zip'), 'app.zip');
+            res.download(path.join(__dirname, '../gen/app.zip'), 'app.zip');
             busy = false;
         })
     }

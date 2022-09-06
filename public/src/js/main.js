@@ -123,7 +123,7 @@ function generateFiles(projectName){
 
     projectFiles['/package.json'].updateContent(
         /"name": ""/g,
-        '"name": "' + (projectName.trim() != '' ? projectName.replace(/ /g, '-').toLowerCase() : "\"\"") + '\"'
+        '"name": "' + (projectName.trim() != '' ? projectName.replace(/ /g, '-').toLowerCase() : '') + '\"'
     );
 
     projectFiles[rawSiteUrl + 'index.html'].updateContent(
@@ -148,6 +148,7 @@ function generateFiles(projectName){
 
     folders = folders.sort((a, b) => (a.path + a.name) < (b.path + b.name) ? -1 : 1);
     files = files.sort((a, b) => (a.path + a.name) < (b.path + b.name) ? -1 : 1);
+    console.log(files)
 
     return new Promise(async (resolve, reject) => {
         await fetch('/generate', {
