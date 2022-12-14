@@ -40,12 +40,12 @@ $('body').ready(() => {
             })
             .then((res) => {
                 removeLoaderFromButton($(e.currentTarget));
-                if(res.ok){
-                    $('label.feature:not([disabled])').removeClass('active')
-                    $('label.feature:not([disabled])').attr('aria-pressed', 'false');
-                    $('label.feature:not([disabled])').children('.feature')[0].removeAttribute('checked');
-                    explorer.init(getFeatures());
-                }
+                // if(res.ok){
+                //     $('label.feature:not([disabled])').removeClass('active')
+                //     $('label.feature:not([disabled])').attr('aria-pressed', 'false');
+                //     $('label.feature:not([disabled])').children('.feature')[0].removeAttribute('checked');
+                //     explorer.init(getFeatures());
+                // }
             });
         }
     });
